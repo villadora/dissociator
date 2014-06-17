@@ -1,6 +1,6 @@
 {
   "name": "dissociator",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "description": "dissociator",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [
     "dissociator"
   ],
-  "engines": { 
+  "engines": {
     "node": ">=0.11.0"
   },
   "author": "villadora",
@@ -24,5 +24,9 @@
   "devDependencies": {
     "mocha": "*",
     "chai": "*"
+  },
+  "dependencies": {
+    "routington": "^0.1.3",
+    "async": "^0.9.0"
   }
 }
