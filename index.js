@@ -1,6 +1,7 @@
 var async = require('async');
 var routington = require('routington');
 var url = require('url');
+var methods = require('methods');
 
 function Diss() {
   var router = this.router = routington();
@@ -14,7 +15,7 @@ Diss.prototype.use = function(path, middleware) {
   });
 };
 
-['get', 'put', 'post', 'delete', 'head'].forEach(function(method) {
+methods.forEach(function(method) {
   var M = method.toUpperCase();
 
   Diss.prototype[method] = function(path, handler) {
@@ -59,7 +60,16 @@ Diss.prototype.routing = function() {
 };
 
 module.exports = function() {
-  return new Diss();
+  var diss = new Diss();
+
+  var router = diss.routing();
+  methods.forEach(function(m) {
+    router[m] = diss[m].bind(diss);
+  });
+
+  router.use = diss.use.bind(diss);
+
+  return router;
 };
 
 module.exports.Dissociator = Diss;
