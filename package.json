@@ -1,6 +1,6 @@
 {
   "name": "dissociator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "dissociator",
   "main": "index.js",
   "scripts": {
