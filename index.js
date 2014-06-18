@@ -36,7 +36,7 @@ Diss.prototype.routing = function() {
     if (!match)
       return next();
 
-    req.params = match.params;
+    req.params = match.param;
 
     var node = match.node;
     var stacks = (node.uses || []).concat(node[req.method] || []);
