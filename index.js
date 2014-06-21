@@ -31,6 +31,7 @@ Diss.prototype.del = Diss.prototype.delete;
 
 Diss.prototype.routing = function() {
   var self = this;
+
   return function(req, res, next) {
     var match = self.router.match(url.parse(req.url).pathname);
     if (!match)
@@ -39,22 +40,23 @@ Diss.prototype.routing = function() {
     req.params = match.param;
 
     var node = match.node;
-    var stacks = (node.uses || []).concat(node[req.method] || []);
+    var stack = (node.uses || []).concat(node[req.method] || []);
 
-    if (stacks && stacks.length) {
-      async.series(stacks.map(function(fn) {
-        return function(cb) {
-          try {
-            fn(req, res, cb);
-          } catch (e) {
-            cb(e);
-          }
-        }
-      }), function(err) {
+    var idx = 0;
+
+    next_layer();
+
+    function next_layer(err) {
+      if (err) return next(err);
+
+      var fn = stack[idx++];
+      if (!fn) return next(err);
+
+      try {
+        fn(req, res, next_layer);
+      } catch (err) {
         next(err);
-      });
-    } else {
-      next();
+      }
     }
   };
 };
