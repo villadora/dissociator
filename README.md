@@ -23,7 +23,7 @@ router.post('/post|page/:controller', function(req, res) {
 
 });
 
-router.get('/page/:id(\\w{3,30})', function(req, res) {
+router.get('/page/:id(\\w{3,30})', function(req, res, next) {
 
 });
 
