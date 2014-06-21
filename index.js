@@ -1,4 +1,3 @@
-var async = require('async');
 var routington = require('routington');
 var url = require('url');
 var methods = require('methods');
