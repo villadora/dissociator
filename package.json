@@ -1,6 +1,6 @@
 {
   "name": "dissociator",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "A router for express using routington",
   "main": "index.js",
   "scripts": {

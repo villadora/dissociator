@@ -17,7 +17,7 @@ var router = dissociator();
 
 // middleware
 router.use('/page', function(req, res, next) {
-
+    next();
 });
 
 router.post('/post|page/:controller', function(req, res) {
@@ -32,6 +32,13 @@ var app = require('express')();
 
 app.use(router);
 ```
+
+## API
+
+### router[verb]
+
+`verb` could be any method in that available in `method` package.
+
 
 ## Licence
 
